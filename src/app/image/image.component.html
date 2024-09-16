@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title ">{{ title }}</h4>
+                        <p class="card-category">{{ title }}</p>
+                    </div>
+                    <div class="card-body">
+                        <!-- 圖片放置於此 -->
+                        <div class="image-container text-center">
+                            <img *ngIf="base64Image" [src]="base64Image" alt="Base64 Image" class="image" fill>
+                        </div>
+
+                        <!-- 輸入框和按鈕 -->
+                        <div class="form-container mt-4">
+                            <input type="text" class="form-control" [(ngModel)]="userInput" placeholder="輸入你的圖片提示詞(英文)">
+                            <button class="btn btn-success mt-2 pull-right" (click)="sendMessage()">生成圖片</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

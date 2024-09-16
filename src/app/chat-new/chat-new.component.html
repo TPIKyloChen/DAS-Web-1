@@ -1,0 +1,69 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-success">
+                        <h4 class="card-title ">{{ title }}</h4>
+                        <p class="card-category">{{ title }}</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="chat-container">
+                            <div *ngFor="let message of messages"
+                                 [ngClass]="{'user-message': message.sender === 'user', 'system-message': (message.sender === 'system'|| message.sender === 'system-wait') }"
+                                 class="message-card">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <!-- 使用者訊息顯示 p -->
+                                        <ng-container *ngIf="message.sender === 'user'; else aiMessage">
+                                            <p style="white-space: pre-line;">{{ message.content }}</p>
+                                        </ng-container>
+
+                                        <!-- AI 訊息顯示 markdown -->
+                                        <ng-template #aiMessage>
+                                            <markdown clipboard lineNumbers class="markdown-content"
+                                                      [ngClass]="{'loading-dots': message.sender === 'system-wait'}">{{ message.content }}
+                                            </markdown>
+                                        </ng-template>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
+
+                        <div class="message-input-container">
+                            <mat-form-field class="message-input" appearance="fill">
+                                <div class="file-preview-container">
+                                    <div *ngFor="let file of selectedFiles" class="file-preview">
+                                        <div class="file-container">
+                                            <img *ngIf="file.isImage" [src]="file.previewUrl" alt="File preview"
+                                                 class="thumbnail">
+                                            <mat-icon class="preview-mat-icon" *ngIf="!file.isImage">{{ file.icon }}</mat-icon>
+                                            <span class="file-name">{{ file.file.name }}</span> <!-- 顯示檔案名稱 -->
+
+                                            <button (click)="removeFile(file)" class="remove-button">✖</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-row">
+                                    <button class="upload-button"
+                                            (click)="fileInput.click()">
+                                        <mat-icon>attach_file</mat-icon> <!-- 使用迴紋針圖標 -->
+                                    </button>
+                                    <input type="file" (change)="onFilesSelected($event)" hidden
+                                           #fileInput>
+
+                                    <textarea placeholder="請輸入訊息" matInput (paste)="onPaste($event)"
+                                              [(ngModel)]="userInput" (keydown)="onKeydown($event)" style="resize:none;"
+                                              rows="4"></textarea>
+                                </div>
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" [disabled]="isSending || this.userInput == ''"
+                                    (click)="sendMessage()">發送
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

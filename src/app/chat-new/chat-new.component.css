@@ -1,0 +1,171 @@
+/* ai-chat.component.css */
+.chat-container {
+    height: 60vh; /* 使聊天容器佔據視窗高度的60% */
+    overflow-y: scroll;
+    padding: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: column-reverse; /* 使最新消息顯示在最下面 */
+}
+
+.input-row {
+    display: flex;
+    align-items: center; /* 上傳按鈕和文字框在垂直方向對齊 */
+}
+
+.upload-button {
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none;
+    width: 40px; /* 確保寬度和高度相同 */
+    height: 40px;
+    border-radius: 50%; /* 使按鈕為圓形 */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* 確保超出部分無法點擊 */
+    cursor: pointer;
+    margin-right: 10px; /* 按鈕和輸入框之間的間距 */
+}
+
+.message-input {
+    flex-grow: 1; /* 讓 textarea 占據剩餘空間 */
+}
+
+.message-card {
+    margin-bottom: 10px;
+}
+
+.user-message .mat-card {
+    background-color: #e0f7fa;
+    text-align: right;
+}
+
+.ai-message .mat-card {
+    background-color: #e8eaf6;
+    text-align: left;
+}
+
+.message-input-container {
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+}
+
+button {
+    margin-left: 8px;
+}
+
+.loading-dots:after{
+    content: '';
+    display: inline-block;
+    width: 2em;
+    height: 2em;
+    animation: dots 0.5s steps(5, end) infinite;
+    font-size: 2em; /* 增加字體大小 */
+    justify-content: center;
+    align-items: center;
+}
+
+/* 設定表格的邊框 */
+.markdown-content table {
+    border-spacing: 0;
+    border: 1px solid #ccc;
+    margin-bottom: 16px;
+}
+
+/* 設定表頭的背景顏色和文字顏色 */
+.markdown-content th {
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+/* 設定表格資料單元格的邊框 */
+.markdown-content td {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.image-preview {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.file-container {
+    position: relative;
+    display: flex;
+    align-items: center; /* 垂直居中圖片與檔案名稱 */
+    gap: 10px; /* 圖片和檔案名稱之間的間距 */
+}
+
+.file-name {
+    font-size: 14px; /* 檔案名稱字體大小 */
+    color: black; /* 檔案名稱顏色 */
+    white-space: nowrap; /* 確保檔案名稱不換行 */
+    overflow: hidden;
+    text-overflow: ellipsis; /* 如果檔名過長，顯示省略號 */
+    max-width: 150px; /* 限制檔案名稱的寬度 */
+}
+.thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px; /* 圓角圖片，依需求可選 */
+}
+.preview-mat-icon {
+    font-size: 50px !important; /* 強制將圖標大小設置為 50px */
+    width: 50px !important; /* 設置圖標寬度 */
+    height: 50px !important; /* 設置圖標高度 */
+    line-height: 50px !important; /* 確保圖標在中間 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: gray;
+}
+
+.file-preview-container {
+    display: flex;
+    gap: 10px; /* 圖片之間的間距 */
+}
+.remove-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    color: rgba(16, 15, 15, 0.7);
+    border-color: #4e555b;
+    font-size: 14px;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* 圓形按鈕 */
+    cursor: pointer;
+    padding: 0;
+}
+
+@keyframes dots {
+    0%, 20% {
+        content: '.';
+    }
+    40% {
+        content: '..';
+    }
+    60% {
+        content: '...';
+    }
+    80%, 100% {
+        content: '....';
+    }
+}

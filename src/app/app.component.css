@@ -1,0 +1,17 @@
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); /* 半透明灰色背景 */
+    z-index: 10000; /* 确保 z-index 足够高，覆盖所有内容 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto; /* 允许遮罩层拦截点击事件 */
+}
+
+.loading-overlay mat-spinner {
+    z-index: 10001; /* 确保加载动画位于遮罩层上 */
+}
